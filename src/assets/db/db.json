@@ -1,0 +1,50 @@
+{
+  "database": "todoDB",
+  "version": 1,
+  "encrypted": false,
+  "mode": "full",
+  "tables": [
+    {
+      "name": "task",
+      "schema": [
+        {
+          "column": "id",
+          "value": "INTEGER PRIMARY KEY AUTOINCREMENT"
+        },
+        {
+          "column": "title",
+          "value": "TEXT NOT NULL"
+        },
+        {
+          "column": "description",
+          "value": "TEXT"
+        },
+        {
+          "column": "dueDate",
+          "value": "TEXT"
+        },
+        {
+          "column": "category",
+          "value": "TEXT"
+        },
+        {
+          "column": "reminderEnabled",
+          "value": "INTEGER DEFAULT 0"
+        }
+      ]
+    },
+    {
+      "name": "category",
+      "schema": [
+        {
+          "column": "id",
+          "value": "INTEGER PRIMARY KEY AUTOINCREMENT"
+        },
+        {
+          "column": "name",
+          "value": "TEXT NOT NULL UNIQUE"
+        }
+      ]
+    }
+  ]
+}

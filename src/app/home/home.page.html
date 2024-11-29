@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>ToDoLista</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openAddTaskPage()">
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar placeholder="Buscar tareas"></ion-searchbar>
+
+  <ion-item>
+    <ion-label>Categoría</ion-label>
+    <ion-select [(ngModel)]="selectedCategory" placeholder="Seleccionar Categoría">
+      <ion-select-option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</ion-select-option>
+    </ion-select>
+    <ion-button slot="end" (click)="openAddCategoryPage()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-button>
+  </ion-item>
+  
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let tarea of tareas">
+      <!-- Elemento -->
+      <ion-item>
+        <ion-label>
+          <h2>{{ tarea.title }}</h2>
+          <p>{{ tarea.description }}</p>
+          <p>Vence: {{ tarea.dueDate }}</p>
+          <p>Categoría: {{ tarea.category }}</p>
+          <p>Recordatorio: {{ tarea.reminderEnabled ? 'Sí' : 'No' }}</p>
+        </ion-label>
+      </ion-item>
+  
+      <!-- Opciones -->
+      <ion-item-options side="end">
+        <ion-item-option color="warning" (click)="editTask(tarea)">
+          <ion-icon name="create-outline"></ion-icon> Editar
+        </ion-item-option>
+        <ion-item-option color="danger" (click)="deleteTask(tarea.id)">
+          <ion-icon name="trash-outline"></ion-icon> Eliminar
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  
+  
+
+  <ion-button shape="round" >Vista Calendario</ion-button>
+  <ion-button shape="round" (click)="openAddTaskPage()">Agregar Tarea</ion-button>
+  <ion-button shape="round" >Reportes</ion-button>
+</ion-content>

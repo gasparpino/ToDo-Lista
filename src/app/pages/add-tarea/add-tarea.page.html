@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Agregar Tarea</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="addTask()">
+    <ion-item>
+      <ion-label position="floating">Título</ion-label>
+      <ion-input [(ngModel)]="task.title" name="title" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-textarea [(ngModel)]="task.description" name="description"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Fecha de Vencimiento</ion-label>
+      <ion-datetime [(ngModel)]="task.dueDate" name="dueDate" presentation="date"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Categoría</ion-label>
+      <ion-select [(ngModel)]="task.category" name="category" placeholder="Seleccionar Categoría">
+        <ion-select-option *ngFor="let category of categories" [value]="category.name">
+          {{ category.name }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label>Recordatorio</ion-label>
+      <ion-checkbox [(ngModel)]="task.reminderEnabled" name="reminderEnabled"></ion-checkbox>
+    </ion-item>
+
+    <ion-button expand="block" type="submit">Agregar</ion-button>
+  </form>
+</ion-content>
