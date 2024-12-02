@@ -27,8 +27,6 @@ ionic cap sync
 ejecutar aplicación
 ionic serve
 
-
-
 # Sincronización con Android 
   ionic capacitor clean android
   ionic capacitor sync android
