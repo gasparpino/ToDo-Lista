@@ -26,7 +26,6 @@ export class SqliteService {
   async init() {
     const info = await Device.getInfo();
     const sqlite = CapacitorSQLite as any;
-
     if (info.platform == 'android') {
       try {
         await sqlite.requestPermissions();
@@ -357,6 +356,11 @@ async markTaskAsCompleted(taskId: number, completed: boolean) {
     return changes;
   }).catch(err => Promise.reject(err));
 }
+
+
+
+
+
 
 
 
