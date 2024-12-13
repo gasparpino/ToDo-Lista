@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Vista Calendario</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Selecciona una fecha:</ion-label>
+    <ion-datetime
+      (ionChange)="onDateChange($event)"
+      presentation="date"
+    ></ion-datetime>
+  </ion-item>
+
+  <ion-list *ngIf="tasks.length > 0">
+    <ion-item *ngFor="let tarea of tasks">
+      <ion-label>
+        <h2>{{ tarea.title }}</h2>
+        <p>{{ tarea.description }}</p>
+        <p>Vence: {{ tarea.dueDate }}</p>
+        <p>Categoría: {{ tarea.category }}</p>
+        <p>Recordatorio: {{ tarea.reminderEnabled ? 'Sí' : 'No' }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="tasks.length === 0" class="empty-list">
+    <p>No hay tareas para esta fecha.</p>
+  </div>
+</ion-content>

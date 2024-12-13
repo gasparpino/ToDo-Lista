@@ -1,16 +1,44 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>Agregar Categoría</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form (ngSubmit)="addCategory()">
+  <form (ngSubmit)="onSubmit()">
     <ion-item>
       <ion-label position="floating">Nombre de la Categoría</ion-label>
       <ion-input [(ngModel)]="categoryName" name="categoryName" required></ion-input>
     </ion-item>
 
-    <ion-button expand="block" type="submit">Agregar Categoría</ion-button>
+    <ion-button expand="block" type="submit" *ngIf="!isEditing">Agregar Categoría</ion-button>
+    <ion-button expand="block" color="success" (click)="updateCategory()" *ngIf="isEditing">Actualizar Categoría</ion-button>
   </form>
+
+  <!-- Listado de categorías -->
+  <ion-list>
+    <ion-item-sliding *ngFor="let category of categories">
+      <!-- Elemento -->
+      <ion-item>
+        <ion-label>
+          <h2>{{ category.name }}</h2>
+        </ion-label>
+      </ion-item>
+
+      <!-- Opciones -->
+      <ion-item-options side="end">
+        <ion-item-option color="warning" (click)="editCategory(category)">
+          <ion-icon name="create-outline"></ion-icon> Editar
+        </ion-item-option>
+        <ion-item-option color="danger" (click)="deleteCategory(category.id)">
+          <ion-icon name="trash-outline"></ion-icon> Eliminar
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>

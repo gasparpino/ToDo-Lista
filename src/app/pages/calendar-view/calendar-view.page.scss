@@ -1,0 +1,88 @@
+.highlight-dates::part(day-active) {
+    background-color: #ffcc00 !important; /* Amarillo para destacar días con recordatorios */
+    color: #000 !important;
+  }
+  
+  .empty-list {
+    text-align: center;
+    margin-top: 20px;
+    color: #999;
+  }
+  
+  ion-datetime::part(day-active) {
+    background-color: #ffcc00 !important; /* Color para el día seleccionado */
+    color: #000 !important;
+  }
+  
+  
+  ion-datetime::part(day[aria-selected="true"]) {
+    background-color: #00bcd4 !important; /* Color para días con tareas */
+    color: white !important;
+  }
+  
+  .day-header {
+    text-align: center;
+    font-weight: 500;
+    color: var(--ion-color-dark);
+    font-size: 14px;
+    padding: 10px 0; /* Espaciado uniforme para centrar */
+  }
+  
+  .day-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px; /* Altura suficiente para centrar */
+    font-size: 16px;
+  }
+  
+  .day-cell span {
+    display: inline-block;
+    width: 35px;  /* Ajustamos el tamaño del círculo */
+    height: 35px;
+    line-height: 35px;  /* Esto alinea el texto verticalmente */
+    text-align: center;
+    border-radius: 50%; /* Círculo para el día */
+  }
+  
+  .today {
+    background-color: #007bff; /* Azul para el día actual */
+    color: white;
+  }
+  
+  .selected {
+    background-color: #ffca28; /* Amarillo para el día seleccionado */
+    color: white;
+  }
+  
+  .other-month {
+    color: #d3d3d3; /* Color gris para los días de otro mes */
+  }
+  
+  ion-toolbar {
+    --background: white;
+  }
+  
+  ion-title {
+    font-size: 18px;
+    text-align: center;
+  }
+  
+  ion-button {
+    --background: none;
+    color: var(--ion-color-primary);
+  }
+  
+  ion-content {
+    --background: #fafafa;
+    padding: 0 10px;
+  }
+  
+  ion-grid {
+    --ion-grid-padding: 0;
+  }
+  
+  ion-row, ion-col {
+    padding: 0; /* Sin relleno entre celdas para un mejor ajuste */
+  }
+  

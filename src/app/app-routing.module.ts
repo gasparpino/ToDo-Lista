@@ -23,6 +23,15 @@ const routes: Routes = [
     path: 'edit-tarea',
     loadChildren: () => import('./pages/edit-tarea/edit-tarea.module').then( m => m.EditTareaPageModule)
   },
+  {
+    path: 'calendar-view',
+    loadChildren: () => import('./pages/calendar-view/calendar-view.module').then( m => m.CalendarViewPageModule)
+  },
+  {
+    path: 'reporteria',
+    loadChildren: () => import('./pages/reporteria/reporteria.module').then( m => m.ReporteriaPageModule)
+  },
+
 ];
 
 @NgModule({

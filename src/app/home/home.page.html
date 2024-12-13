@@ -22,20 +22,23 @@
     </ion-button>
   </ion-item>
   
-
   <ion-list>
+    <!-- Elemento -->
     <ion-item-sliding *ngFor="let tarea of tareas">
-      <!-- Elemento -->
       <ion-item>
         <ion-label>
           <h2>{{ tarea.title }}</h2>
           <p>{{ tarea.description }}</p>
           <p>Vence: {{ tarea.dueDate }}</p>
           <p>Categoría: {{ tarea.category }}</p>
-          <p>Recordatorio: {{ tarea.reminderEnabled ? 'Sí' : 'No' }}</p>
         </ion-label>
+        <ion-checkbox
+          slot="end"
+          [checked]="tarea.completado === 1"
+          (ionChange)="toggleCompleted(tarea)"
+        ></ion-checkbox>
       </ion-item>
-  
+      
       <!-- Opciones -->
       <ion-item-options side="end">
         <ion-item-option color="warning" (click)="editTask(tarea)">
@@ -47,10 +50,8 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-  
-  
 
-  <ion-button shape="round" >Vista Calendario</ion-button>
+  <ion-button shape="round" (click)="openCalendarView()">Vista Calendario</ion-button>
   <ion-button shape="round" (click)="openAddTaskPage()">Agregar Tarea</ion-button>
-  <ion-button shape="round" >Reportes</ion-button>
+  <ion-button shape="round" (click)="openReporteriaPage()">Reportes</ion-button>
 </ion-content>

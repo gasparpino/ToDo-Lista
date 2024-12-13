@@ -211,6 +211,52 @@ async getCategories() {
   }).catch(err => Promise.reject(err));
 }
 
+// Método para actualizar categoría
+async updateCategory(categoryId: number, newName: string) {
+  const sql = `UPDATE category SET name = ? WHERE id = ?`;
+  const dbName = await this.getDbName();
+
+  return CapacitorSQLite.executeSet({
+    database: dbName,
+    set: [
+      {
+        statement: sql,
+        values: [newName, categoryId],
+      },
+    ],
+  }).then((changes: capSQLiteChanges) => {
+    if (this.isWeb) {
+      CapacitorSQLite.saveToStore({ database: dbName });
+    }
+    return changes;
+  }).catch(err => Promise.reject(err));
+}
+
+
+// Método para eliminar categoría
+async deleteCategory(categoryId: number) {
+  const sql = `DELETE FROM category WHERE id = ?`;
+  const dbName = await this.getDbName();
+
+  return CapacitorSQLite.executeSet({
+    database: dbName,
+    set: [
+      {
+        statement: sql,
+        values: [categoryId],
+      },
+    ],
+  }).then((changes: capSQLiteChanges) => {
+    if (this.isWeb) {
+      CapacitorSQLite.saveToStore({ database: dbName });
+    }
+    return changes;
+  }).catch(err => Promise.reject(err));
+}
+
+
+
+
 //obtener tarea
 async getTaskById(taskId: number) {
   const sql = `SELECT * FROM task WHERE id = ?`;
@@ -224,6 +270,94 @@ async getTaskById(taskId: number) {
     return response.values.length > 0 ? response.values[0] : null;
   }).catch(err => Promise.reject(err));
 }
+
+// Carga tareas por día
+async getTasksByDate(date: string) {
+  const sql = `SELECT * FROM task WHERE dueDate LIKE ?`;
+  const dbName = await this.getDbName();
+
+  return CapacitorSQLite.query({
+    database: dbName,
+    statement: sql,
+    values: [`${date}%`], // Usa LIKE para coincidir con la fecha sin considerar la hora
+  }).then((response: capSQLiteValues) => {
+    return response.values || [];
+  }).catch(err => {
+    console.error('Error al obtener tareas por fecha:', err);
+    return [];
+  });
+}
+
+
+
+async getTaskDatesForMonth(year: number, month: number) {
+  const startOfMonth = `${year}-${month.toString().padStart(2, '0')}-01`;
+  const endOfMonth = `${year}-${(month + 1).toString().padStart(2, '0')}-01`;
+
+  const sql = `
+    SELECT DISTINCT SUBSTR(dueDate, 1, 10) as date
+    FROM task
+    WHERE dueDate >= ? AND dueDate < ?
+  `;
+  const dbName = await this.getDbName();
+
+  try {
+    const response = await CapacitorSQLite.query({
+      database: dbName,
+      statement: sql,
+      values: [startOfMonth, endOfMonth],
+    });
+
+    return response.values
+      .map(row => row.date)
+      .filter(date => /^\d{4}-\d{2}-\d{2}$/.test(date)); // Filtra valores inválidos
+  } catch (error) {
+    console.error('Error al obtener fechas de tareas para el mes:', error);
+    return [];
+  }
+}
+
+async updateTaskStatus(taskId: number, completado: boolean) {
+  const sql = `UPDATE task SET completado = ? WHERE id = ?`;
+  const dbName = await this.getDbName();
+
+  return CapacitorSQLite.executeSet({
+    database: dbName,
+    set: [
+      {
+        statement: sql,
+        values: [completado ? 1 : 0, taskId],
+      },
+    ],
+  }).then(changes => {
+    if (this.isWeb) {
+      CapacitorSQLite.saveToStore({ database: dbName });
+    }
+    return changes;
+  }).catch(err => Promise.reject(err));
+}
+
+
+async markTaskAsCompleted(taskId: number, completed: boolean) {
+  const sql = `UPDATE task SET completado = ? WHERE id = ?`;
+  const dbName = await this.getDbName();
+
+  return CapacitorSQLite.executeSet({
+    database: dbName,
+    set: [
+      {
+        statement: sql,
+        values: [completed ? 1 : 0, taskId],
+      },
+    ],
+  }).then((changes) => {
+    if (this.isWeb) {
+      CapacitorSQLite.saveToStore({ database: dbName });
+    }
+    return changes;
+  }).catch(err => Promise.reject(err));
+}
+
 
 
 

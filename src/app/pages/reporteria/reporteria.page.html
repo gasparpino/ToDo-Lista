@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/home">
+        <ion-icon name="home"></ion-icon>
+        Inicio
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Reportería</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Tareas completadas -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Tareas Completadas</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let tarea of completedTasks">
+          <ion-label>
+            <h2>{{ tarea.title }}</h2>
+            <p>{{ tarea.description }}</p>
+            <p>Vence: {{ tarea.dueDate }}</p>
+            <p>Categoría: {{ tarea.category }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      <p *ngIf="completedTasks.length === 0">No hay tareas completadas.</p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Tareas pendientes -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Tareas Pendientes</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let tarea of pendingTasks">
+          <ion-label>
+            <h2>{{ tarea.title }}</h2>
+            <p>{{ tarea.description }}</p>
+            <p>Vence: {{ tarea.dueDate }}</p>
+            <p>Categoría: {{ tarea.category }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      <p *ngIf="pendingTasks.length === 0">No hay tareas pendientes.</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

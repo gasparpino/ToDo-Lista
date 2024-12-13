@@ -30,6 +30,10 @@
         {
           "column": "reminderEnabled",
           "value": "INTEGER DEFAULT 0"
+        },
+        {
+          "column": "completado",
+          "value": "INTEGER DEFAULT 0"
         }
       ]
     },

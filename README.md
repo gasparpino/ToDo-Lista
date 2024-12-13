@@ -9,6 +9,11 @@
 
   Estuve una semana entera intentando conetarme a la base hasta que lo logré , ahora me falta desarrollar los demás módulos. De tanto error y recompilación e instalación de componentes logré entender de mejor manera el código un como interactúa con el. Hasta aquí subo la primera parte de la aplicación para la evaluación de la parte 1 del proyecto.
 
+  Partiendo con la segunda parte del proyecto:
+  Agregue la vista de calendario pero tuve un montón de problemas para poderpintar los días con recordatorios en el calendario. Finalmente dejé la vista del calendario y se deben pinchar día por día las fechas.
+  Ahora voy con los reportes , tambíen agregué el mantenedor de categorías.  
+  Tuve problemas para crear los reportes tal y como quería debido al conocimiento que poseo y la implementación de char.js la cual no dió frutos. El tiempo me tiene pillado debido a que debo hacer entrega de otros trabajos en otros ramos. Por el momento cumpliré con las funcionalidades especificadas.
+  
 # Comandos Básicos de ionic
 
 Comando para instalar el capacitor Android y generar la carpeta Android:

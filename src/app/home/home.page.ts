@@ -80,5 +80,23 @@ export class HomePage {
   openAddCategoryPage() {
     this.navCtrl.navigateForward('/add-category');
   }
+ //calendario
+  openCalendarView() {
+    this.navCtrl.navigateForward('/calendar-view');
+  }
+  openReporteriaPage() {
+    this.navCtrl.navigateForward('/reporteria');
+  }
+  async toggleCompleted(tarea: any) {
+    try {
+      await this.sqlite.markTaskAsCompleted(tarea.id, !tarea.completado);
+      this.loadTareas(); // Recarga las tareas para reflejar el cambio
+    } catch (error) {
+      console.error('Error al actualizar el estado de completado:', error);
+    }
+  }
+  
+  
+  
   
 }
