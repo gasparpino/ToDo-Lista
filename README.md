@@ -16,7 +16,8 @@
 
 
 # Trabajo Final vamos a  integrar un api a nuestra aplicación
-Esta api va a ser un método get que solamente va a traer la lista de las categorías desde otro lado y no desde nuestra base sqllite. 
+Esta api va a ser un método get que solamente va a traer la lista de mails que serán agregados desde otro lado y no desde nuestra base sqllite. Se desplegará la lista de mails en el ingreso de la tarea para demostrar que trae la información correcta. la api a utilizar es una random que obtuve.  http://api.generadordni.es/v2/person/email
+Me apoyé en esta documentación para solucionar el error cors https://www.azilen.com/blog/how-to-resolve-cors-errors-by-using-angular-proxy/
   
 # Comandos Básicos de ionic
 
