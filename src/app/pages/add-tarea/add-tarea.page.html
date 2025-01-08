@@ -6,21 +6,25 @@
 
 <ion-content>
   <form (ngSubmit)="addTask()">
+    <!-- Título -->
     <ion-item>
       <ion-label position="floating">Título</ion-label>
       <ion-input [(ngModel)]="task.title" name="title" required></ion-input>
     </ion-item>
 
+    <!-- Descripción -->
     <ion-item>
       <ion-label position="floating">Descripción</ion-label>
       <ion-textarea [(ngModel)]="task.description" name="description"></ion-textarea>
     </ion-item>
 
+    <!-- Fecha de Vencimiento -->
     <ion-item>
       <ion-label position="floating">Fecha de Vencimiento</ion-label>
       <ion-datetime [(ngModel)]="task.dueDate" name="dueDate" presentation="date"></ion-datetime>
     </ion-item>
 
+    <!-- Categoría -->
     <ion-item>
       <ion-label position="floating">Categoría</ion-label>
       <ion-select [(ngModel)]="task.category" name="category" placeholder="Seleccionar Categoría">
@@ -30,11 +34,27 @@
       </ion-select>
     </ion-item>
     
+    <!-- Selección de Correo -->
+    <ion-item>
+      <ion-label position="floating">Correo</ion-label>
+      <ion-select [(ngModel)]="task.email" name="email" placeholder="Seleccionar Correo">
+        <ion-select-option *ngFor="let email of emails" [value]="email">
+          {{ email }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    
+
+    <!-- Recordatorio -->
     <ion-item>
       <ion-label>Recordatorio</ion-label>
       <ion-checkbox [(ngModel)]="task.reminderEnabled" name="reminderEnabled"></ion-checkbox>
     </ion-item>
 
-    <ion-button expand="block" type="submit">Agregar</ion-button>
+    <!-- Botón para cargar correos -->
+    <ion-button expand="block" color="secondary" (click)="loadEmails()">Cargar Correos</ion-button>
+
+    <!-- Botón para agregar tarea -->
+    <ion-button expand="block" type="submit">Agregar Tarea</ion-button>
   </form>
 </ion-content>

@@ -13,6 +13,10 @@
   Agregue la vista de calendario pero tuve un montón de problemas para poderpintar los días con recordatorios en el calendario. Finalmente dejé la vista del calendario y se deben pinchar día por día las fechas.
   Ahora voy con los reportes , tambíen agregué el mantenedor de categorías.  
   Tuve problemas para crear los reportes tal y como quería debido al conocimiento que poseo y la implementación de char.js la cual no dió frutos. El tiempo me tiene pillado debido a que debo hacer entrega de otros trabajos en otros ramos. Por el momento cumpliré con las funcionalidades especificadas.
+
+
+# Trabajo Final vamos a  integrar un api a nuestra aplicación
+Esta api va a ser un método get que solamente va a traer la lista de las categorías desde otro lado y no desde nuestra base sqllite. 
   
 # Comandos Básicos de ionic
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { SqliteService } from '../../services/sqlite.service';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-add-tarea',
@@ -14,15 +15,20 @@ export class AddTareaPage implements OnInit {
     dueDate: '', // Fecha de vencimiento de la tarea
     category: '',
     reminderEnabled: false,
+    email: '', // Agregar esta propiedad
   };
+  
 
   categories: any[] = []; // Lista de categorías
+  emails: string[] = [];
+  
 
-  constructor(private sqlite: SqliteService, private navCtrl: NavController) {}
+  constructor(private sqlite: SqliteService, private navCtrl: NavController ,private apiService: ApiService) {}
 
   ngOnInit() {
     this.loadCategories();
     this.setDefaultDueDate(); // Establece la fecha actual como predeterminada
+    this.loadEmails();
   }
 
   async loadCategories() {
@@ -53,4 +59,19 @@ export class AddTareaPage implements OnInit {
       console.error('Error al agregar la tarea:', error);
     }
   }
+
+
+ // Cargar correos desde la API
+ loadEmails() {
+  this.apiService.getEmails().subscribe(
+    (response) => {
+      this.emails = response; // Guardar los correos en el array
+    },
+    (error) => {
+      console.error('Error al obtener correos:', error);
+    }
+  );
+}
+
+
 }

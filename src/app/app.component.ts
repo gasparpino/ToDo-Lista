@@ -24,7 +24,7 @@ export class AppComponent {
   initApp(){
 
     this.platform.ready().then( async () => {
-
+  
       // Comprobamos si estamos en web
       const info = await Device.getInfo();
       this.isWeb = info.platform == 'web';

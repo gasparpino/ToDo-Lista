@@ -105,4 +105,7 @@ export class AddCategoryPage implements OnInit {
     this.editingCategoryId = null;
     this.categoryName = '';
   }
+
+
+
 }
